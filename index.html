@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Utang Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Utang Tracker</h1>
+    <div class="controls">
+      <input id="q" placeholder="Search name / note..." type="text" />
+      <select id="filterStatus">
+        <option value="all">All</option>
+        <option value="unpaid">Unpaid</option>
+        <option value="paid">Paid</option>
+      </select>
+      <select id="filterDirection">
+        <option value="all">All directions</option>
+        <option value="owed_to_me">Owes me</option>
+        <option value="i_owe">I owe</option>
+      </select>
+      <button id="clearBtn" class="danger">Clear all</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="card main-section">
+      <div class="totals" id="totalsArea"></div>
+
+      <form id="entryForm" class="card">
+        <input type="hidden" id="editId" />
+        <label>Who
+          <input id="who" type="text" placeholder="Name" required />
+        </label>
+        <label>Amount (PHP)
+          <input id="amount" type="number" step="0.01" min="0" placeholder="1000" required />
+        </label>
+        <label>Direction
+          <select id="direction">
+            <option value="owed_to_me">Owes me</option>
+            <option value="i_owe">I owe</option>
+          </select>
+        </label>
+        <label>Due date
+          <input id="due" type="date" />
+        </label>
+        <label>Notes
+          <textarea id="note" rows="2"></textarea>
+        </label>
+        <div class="form-actions">
+          <button type="button" id="resetForm">Reset</button>
+          <button type="submit" id="saveBtn" class="primary">Add / Save</button>
+        </div>
+      </form>
+
+      <div id="list" class="list"></div>
+    </section>
+
+    <aside class="card sidebar">
+      <h3>Import / Export</h3>
+      <button id="exportCsv">Export CSV</button>
+      <input id="importFile" type="file" accept=".csv" />
+      <button id="printBtn">Print</button>
+
+      <h3>Quick actions</h3>
+      <button id="markAllPaid">Mark all paid</button>
+      <button id="markAllUnpaid">Mark all unpaid</button>
+    </aside>
+  </main>
+
+  <footer>
+    Data is stored locally in your browser. Export to move between devices.
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
